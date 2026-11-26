@@ -1,0 +1,320 @@
+/* =========================================================
+   BizAnalyst AI — Rapido-inspired dark + yellow theme
+   CSS only changes presentation; Streamlit controls keep working.
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --ra-yellow: #FFD21F;
+    --ra-yellow-hover: #F4C400;
+    --ra-black: #101010;
+    --ra-surface: #191919;
+    --ra-surface-2: #222222;
+    --ra-surface-3: #2B2B2B;
+    --ra-text: #F7F7F7;
+    --ra-muted: #A8A8A8;
+    --ra-border: rgba(255, 210, 31, 0.20);
+    --ra-green: #35C98A;
+    --ra-red: #FF6262;
+    --ra-radius: 16px;
+}
+
+html, body, [class*="css"] {
+    font-family: 'DM Sans', sans-serif;
+}
+
+.stApp {
+    background:
+        radial-gradient(ellipse at 78% 0%, rgba(255, 210, 31, 0.055), transparent 34%),
+        var(--ra-black);
+    color: var(--ra-text);
+}
+
+/* Main canvas */
+.main .block-container {
+    max-width: 1500px;
+    padding: 2rem 2.2rem 3rem;
+}
+
+/* Header typography */
+h1, h2, h3, h4, h5 {
+    color: var(--ra-text) !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.035em;
+}
+h1 { font-size: clamp(2rem, 3vw, 2.8rem) !important; }
+h2 { font-size: 1.75rem !important; }
+h3 { font-size: 1.25rem !important; }
+p, label, .stCaption, [data-testid="stMarkdownContainer"] {
+    color: var(--ra-text);
+}
+.stCaption, [data-testid="stCaptionContainer"] {
+    color: var(--ra-muted) !important;
+}
+
+/* App header / toolbar */
+header[data-testid="stHeader"] {
+    background: rgba(16, 16, 16, 0.92);
+}
+[data-testid="stToolbar"] {
+    right: 1rem;
+}
+
+/* Sidebar */
+section[data-testid="stSidebar"] {
+    background: #151515;
+    border-right: 1px solid rgba(255, 210, 31, 0.16);
+}
+section[data-testid="stSidebar"] > div {
+    background: transparent;
+}
+section[data-testid="stSidebar"] h1,
+section[data-testid="stSidebar"] h2,
+section[data-testid="stSidebar"] h3 {
+    color: var(--ra-yellow) !important;
+}
+section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p {
+    color: #EAEAEA;
+}
+
+/* Sidebar navigation radio items */
+section[data-testid="stSidebar"] [role="radiogroup"] {
+    gap: 5px;
+}
+section[data-testid="stSidebar"] [role="radiogroup"] label {
+    border-radius: 10px;
+    padding: 7px 10px;
+    transition: background .18s ease, transform .18s ease;
+}
+section[data-testid="stSidebar"] [role="radiogroup"] label:hover {
+    background: rgba(255, 210, 31, 0.10);
+    transform: translateX(3px);
+}
+section[data-testid="stSidebar"] [role="radiogroup"] label:has(input:checked) {
+    background: rgba(255, 210, 31, 0.15);
+    border-left: 3px solid var(--ra-yellow);
+}
+
+/* KPI / metric cards */
+[data-testid="stMetric"] {
+    background: linear-gradient(145deg, #202020, #171717);
+    border: 1px solid var(--ra-border);
+    border-radius: var(--ra-radius);
+    padding: 18px 20px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .20);
+    transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+[data-testid="stMetric"]:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 210, 31, .72);
+    box-shadow: 0 12px 30px rgba(255, 210, 31, .08);
+}
+[data-testid="stMetricLabel"] {
+    color: var(--ra-muted) !important;
+    font-weight: 600;
+}
+[data-testid="stMetricValue"] {
+    color: var(--ra-yellow) !important;
+    font-weight: 800;
+}
+[data-testid="stMetricDelta"] {
+    font-weight: 600;
+}
+
+/* Buttons */
+.stButton > button,
+.stDownloadButton > button,
+[data-testid="stFormSubmitButton"] > button {
+    background: var(--ra-yellow);
+    color: #111111 !important;
+    border: 1px solid var(--ra-yellow);
+    border-radius: 999px;
+    min-height: 42px;
+    padding: .55rem 1.25rem;
+    font-weight: 800;
+    transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+}
+.stButton > button:hover,
+.stDownloadButton > button:hover,
+[data-testid="stFormSubmitButton"] > button:hover {
+    background: var(--ra-yellow-hover);
+    border-color: var(--ra-yellow-hover);
+    color: #111111 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(255, 210, 31, .20);
+}
+.stButton > button:active,
+.stDownloadButton > button:active {
+    transform: translateY(0) scale(.98);
+}
+.stButton > button:focus,
+.stDownloadButton > button:focus {
+    box-shadow: 0 0 0 3px rgba(255, 210, 31, .28) !important;
+}
+
+/* Inputs */
+.stTextInput input,
+.stNumberInput input,
+.stTextArea textarea,
+.stDateInput input,
+[data-baseweb="input"] input {
+    background: var(--ra-surface-2) !important;
+    color: var(--ra-text) !important;
+    border: 1px solid #3B3B3B !important;
+    border-radius: 11px !important;
+}
+.stTextInput input:focus,
+.stNumberInput input:focus,
+.stTextArea textarea:focus,
+.stDateInput input:focus {
+    border-color: var(--ra-yellow) !important;
+    box-shadow: 0 0 0 2px rgba(255, 210, 31, .15) !important;
+}
+.stTextInput label, .stTextArea label, .stSelectbox label,
+.stMultiSelect label, .stNumberInput label, .stDateInput label {
+    color: #E8E8E8 !important;
+    font-weight: 600;
+}
+
+/* Select boxes and multiselect */
+[data-baseweb="select"] > div {
+    background: var(--ra-surface-2) !important;
+    border-color: #3B3B3B !important;
+    border-radius: 11px !important;
+    color: var(--ra-text) !important;
+}
+[data-baseweb="tag"] {
+    background: rgba(255, 210, 31, .18) !important;
+    color: var(--ra-yellow) !important;
+    border: 1px solid var(--ra-border);
+}
+
+/* Checkboxes, radio, sliders */
+[data-testid="stCheckbox"] label,
+[data-testid="stRadio"] label {
+    color: var(--ra-text) !important;
+}
+[data-testid="stSlider"] [role="slider"] {
+    background: var(--ra-yellow) !important;
+    border-color: var(--ra-yellow) !important;
+}
+[data-testid="stSlider"] [data-testid="stTickBar"] {
+    background: var(--ra-yellow);
+}
+
+/* File uploader */
+[data-testid="stFileUploader"] {
+    background: linear-gradient(145deg, #202020, #181818);
+    border: 1px dashed rgba(255, 210, 31, .65);
+    border-radius: var(--ra-radius);
+    padding: 12px;
+    transition: border-color .2s ease, background .2s ease;
+}
+[data-testid="stFileUploader"]:hover {
+    border-color: var(--ra-yellow);
+    background: #24221A;
+}
+[data-testid="stFileUploader"] button {
+    border-radius: 999px;
+}
+
+/* Tabs */
+.stTabs [data-baseweb="tab-list"] {
+    gap: 8px;
+    border-bottom: 1px solid #343434;
+}
+.stTabs [data-baseweb="tab"] {
+    color: var(--ra-muted);
+    border-radius: 10px 10px 0 0;
+    font-weight: 700;
+}
+.stTabs [aria-selected="true"] {
+    color: var(--ra-yellow) !important;
+    border-bottom: 3px solid var(--ra-yellow) !important;
+}
+
+/* Expanders and containers */
+[data-testid="stExpander"] {
+    background: #1B1B1B;
+    border: 1px solid #333333;
+    border-radius: 13px;
+}
+[data-testid="stExpander"] summary:hover {
+    color: var(--ra-yellow) !important;
+}
+div[data-testid="stVerticalBlockBorderWrapper"] {
+    border-color: rgba(255, 210, 31, .20) !important;
+    border-radius: var(--ra-radius);
+}
+
+/* Dataframes and tables */
+[data-testid="stDataFrame"],
+[data-testid="stTable"] {
+    border: 1px solid #383838;
+    border-radius: 12px;
+    overflow: hidden;
+}
+[data-testid="stDataFrame"] [role="columnheader"] {
+    background: #292929 !important;
+    color: var(--ra-yellow) !important;
+    font-weight: 800 !important;
+}
+
+/* Alerts */
+[data-testid="stAlert"] {
+    border-radius: 12px;
+    border: 1px solid rgba(255, 210, 31, .18);
+}
+
+/* Progress bars */
+[data-testid="stProgressBar"] > div > div {
+    background: var(--ra-yellow) !important;
+}
+
+/* Plotly chart containers */
+[data-testid="stPlotlyChart"] {
+    background: #191919;
+    border: 1px solid #303030;
+    border-radius: 14px;
+    padding: 8px;
+}
+
+/* Dividers and links */
+hr {
+    border-color: #353535 !important;
+}
+a {
+    color: var(--ra-yellow) !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: #141414; }
+::-webkit-scrollbar-thumb {
+    background: #555555;
+    border-radius: 20px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--ra-yellow); }
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .main .block-container {
+        padding: 1.25rem 1rem 2rem;
+    }
+}
+@media (max-width: 600px) {
+    h1 { font-size: 1.8rem !important; }
+    [data-testid="stMetric"] { padding: 13px; }
+    .stButton > button,
+    .stDownloadButton > button { width: 100%; }
+}
